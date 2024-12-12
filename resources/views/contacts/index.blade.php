@@ -3,6 +3,13 @@
 @section('content')
     <div class="container">
         <h1>Contacts</h1>
+
+        @if(session()->has('success'))
+            <div class="alert alert-success" id="successMessage">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addContactModal">
             Add Contact
         </button>
@@ -159,6 +166,13 @@
     <script>
         function confirmDelete() {
             return confirm('Are you sure you want to delete this contact?');
+        }
+    </script>
+    <script>
+        if (document.getElementById('successMessage')) {
+            setTimeout(function() {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000); // 5000 milliseconds = 5 seconds
         }
     </script>
 @endsection
